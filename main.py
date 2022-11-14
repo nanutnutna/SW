@@ -16,7 +16,7 @@ def get_db():
 
 
 @app.post("/users/",response_model=schemas.Member)
-def create_member(member: schemas.Member, db:Session = Depends(get_db)):
+def create_member(member: schemas.MemberBase, db:Session = Depends(get_db)):
     #db_user = crud.get_user_by_email(db, email=user.email)
     #print(db_user)
     #if db_user:
