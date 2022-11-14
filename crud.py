@@ -7,10 +7,9 @@ def get_user(db: Session, user_id: int):
 def get_user_by_email(db: Session, email: str):
     return db.query(models.Member).filter(models.Member.email == email).first()
 
-def create_user(db: Session, user:schemas.MemberCreate):
-    hashed_password = user.password + 'test'
-    db_user = models.Member(email=user.email,hashed_password=hashed_password)
-    db.add(db_user)
+def create_member(db: Session, member:schemas.MemberBase):
+    db_member = models.Member(**member.dict())
+    db.add(db_member)
     db.commit()
-    db.refresh(db_user)
-    return db_user
+    db.refresh(db_member)
+    return db_member

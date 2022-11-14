@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Integer, String
 from database import Base
 
 class Member(Base):
@@ -6,6 +6,5 @@ class Member(Base):
     id = Column(Integer, primary_key=True,index=True)
     username = Column(String,index=True)
     password = Column(String,index=True)
-    email = Column(Integer,index=True)
+    email = Column(String,index=True)
     phonenumber = Column(String,index=True)
-    

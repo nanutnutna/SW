@@ -3,14 +3,14 @@ from pydantic import BaseModel
 
 
 class MemberBase(BaseModel):
+    username: str
+    password: str
     email: str
     phonenumber: str
 
-class MemberCreate(MemberBase):
-    password: str
 
 class Member(MemberBase):
     id: int
-    username: str
     class Config:
         orm_mode = True
+

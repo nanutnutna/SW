@@ -16,13 +16,14 @@ def get_db():
 
 
 @app.post("/users/",response_model=schemas.Member)
-async def create_user(user: schemas.MemberCreate, db:Session = Depends(get_db)):
-    db_user = crud.get_user_by_email(db, email=user.email)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-    return crud.create_user(db=db, user=user)
+def create_member(member: schemas.Member, db:Session = Depends(get_db)):
+    #db_user = crud.get_user_by_email(db, email=user.email)
+    #print(db_user)
+    #if db_user:
+    #raise HTTPException(status_code=400, detail="Email already registered")
+    return crud.create_member(member=member,db=db)
 
-@app.get("/users/",response_model=list[schemas.Member])
+@app.get("/user/",response_model=list[schemas.Member])
 async def read_users(skip: int=0, limit: int=100, db:Session=Depends(get_db)):
     users = crud.get_user(db, skip=skip, limit=limit)
     return users
